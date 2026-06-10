@@ -19,9 +19,10 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const auth = localStorage.getItem('adminAuth') || sessionStorage.getItem('adminAuth');
-      if (auth !== 'true') {
-        router.replace('/admin');
+      const cookies = document.cookie.split(';').map(c => c.trim());
+      const isAuth = cookies.some(c => c === 'adminAuth=true');
+      if (!isAuth) {
+        window.location.href = '/admin';
         return;
       }
       setAuthorized(true);
@@ -94,9 +95,8 @@ export default function AdminDashboard() {
     setDeleted(updatedDeleted);
   }
 
-  function logout() {
-    localStorage.removeItem('adminAuth');
-    sessionStorage.removeItem('adminAuth');
+ function logout() {
+    document.cookie = 'adminAuth=; path=/; max-age=0';
     window.location.href = '/admin';
   }
 

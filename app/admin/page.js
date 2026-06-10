@@ -1,17 +1,14 @@
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function AdminLogin() {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
- function handleLogin() {
+  function handleLogin() {
     if (email === 'admin@restaurant.com' && password === 'admin123') {
-      localStorage.setItem('adminAuth', 'true');
-      sessionStorage.setItem('adminAuth', 'true');
+      document.cookie = 'adminAuth=true; path=/; max-age=86400';
       window.location.href = '/admin/dashboard';
     } else {
       setError('Wrong email or password / არასწორი მონაცემები');
@@ -75,14 +72,18 @@ export default function AdminLogin() {
           </p>
         )}
 
-        <button onClick={handleLogin} style={{
-          width: '100%', padding: '13px', borderRadius: '12px',
-          border: 'none', background: '#1A3A2A', color: '#fff',
-          fontSize: '15px', fontWeight: 500, cursor: 'pointer',
-          fontFamily: 'inherit', marginTop: '4px'
-        }}>
+        <div
+          onClick={handleLogin}
+          style={{
+            width: '100%', padding: '13px', borderRadius: '12px',
+            background: '#1A3A2A', color: '#fff', fontSize: '15px',
+            fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit',
+            marginTop: '4px', textAlign: 'center',
+            WebkitTapHighlightColor: 'transparent', userSelect: 'none'
+          }}
+        >
           Sign In / შესვლა
-        </button>
+        </div>
 
         <p style={{ fontSize: '12px', color: '#9B9B97', textAlign: 'center', margin: 0 }}>
           Demo: admin@restaurant.com / admin123
