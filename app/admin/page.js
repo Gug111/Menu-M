@@ -8,11 +8,11 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  function handleLogin() {
+ function handleLogin() {
     if (email === 'admin@restaurant.com' && password === 'admin123') {
       localStorage.setItem('adminAuth', 'true');
       sessionStorage.setItem('adminAuth', 'true');
-      router.push('/admin/dashboard');
+      window.location.href = '/admin/dashboard';
     } else {
       setError('Wrong email or password / არასწორი მონაცემები');
     }

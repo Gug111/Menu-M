@@ -97,7 +97,7 @@ export default function AdminDashboard() {
   function logout() {
     localStorage.removeItem('adminAuth');
     sessionStorage.removeItem('adminAuth');
-    router.push('/admin');
+    window.location.href = '/admin';
   }
 
   const inputStyle = {
