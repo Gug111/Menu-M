@@ -22,7 +22,7 @@ export default function AdminDashboard() {
       const cookies = document.cookie.split(';').map(c => c.trim());
       const isAuth = cookies.some(c => c === 'adminAuth=true');
       if (!isAuth) {
-        window.location.href = '/admin';
+        window.location.replace('/admin');
         return;
       }
       setAuthorized(true);
@@ -97,7 +97,7 @@ export default function AdminDashboard() {
 
  function logout() {
     document.cookie = 'adminAuth=; path=/; max-age=0';
-    window.location.href = '/admin';
+    window.location.replace('/admin');
   }
 
   const inputStyle = {

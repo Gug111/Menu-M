@@ -9,7 +9,7 @@ export default function AdminLogin() {
   function handleLogin() {
     if (email === 'admin@restaurant.com' && password === 'admin123') {
       document.cookie = 'adminAuth=true; path=/; max-age=86400';
-      window.location.href = '/admin/dashboard';
+      window.location.replace('/admin/dashboard');
     } else {
       setError('Wrong email or password / არასწორი მონაცემები');
     }
@@ -47,22 +47,25 @@ export default function AdminLogin() {
         display: 'flex', flexDirection: 'column', gap: '12px'
       }}>
         <input
-          type="email" placeholder="Email" value={email}
+          type="email"
+          placeholder="Email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           style={{
             width: '100%', padding: '12px 16px', borderRadius: '12px',
             border: '0.5px solid #E8E8E4', background: '#F7F7F5',
-            fontSize: '14px', color: '#1A1A1A', outline: 'none', fontFamily: 'inherit'
+            fontSize: '16px', color: '#1A1A1A', outline: 'none', fontFamily: 'inherit'
           }}
         />
         <input
-          type="password" placeholder="Password" value={password}
+          type="password"
+          placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
           style={{
             width: '100%', padding: '12px 16px', borderRadius: '12px',
             border: '0.5px solid #E8E8E4', background: '#F7F7F5',
-            fontSize: '14px', color: '#1A1A1A', outline: 'none', fontFamily: 'inherit'
+            fontSize: '16px', color: '#1A1A1A', outline: 'none', fontFamily: 'inherit'
           }}
         />
 
@@ -72,21 +75,22 @@ export default function AdminLogin() {
           </p>
         )}
 
-        <div
+        <button
+          type="button"
           onClick={handleLogin}
           style={{
-            width: '100%', padding: '13px', borderRadius: '12px',
-            background: '#1A3A2A', color: '#fff', fontSize: '15px',
-            fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit',
-            marginTop: '4px', textAlign: 'center',
-            WebkitTapHighlightColor: 'transparent', userSelect: 'none'
+            width: '100%', padding: '16px', borderRadius: '12px',
+            border: 'none', background: '#1A3A2A', color: '#fff',
+            fontSize: '16px', fontWeight: 500, cursor: 'pointer',
+            fontFamily: 'inherit', marginTop: '4px',
+            WebkitAppearance: 'none', appearance: 'none'
           }}
         >
           Sign In / შესვლა
-        </div>
+        </button>
 
         <p style={{ fontSize: '12px', color: '#9B9B97', textAlign: 'center', margin: 0 }}>
-          Demo: admin@restaurant.com / admin123
+          admin@restaurant.com / admin123
         </p>
       </div>
     </main>

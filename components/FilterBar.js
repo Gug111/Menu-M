@@ -1,10 +1,10 @@
 const categoryConfig = {
-  'All / ყველა':                { emoji: '🍽️', bg: '#F7F7F5', border: '#E8E8E4', text: '#1A1A1A', sub: '#9B9B97' },
-  'Hot / ცხელი':                { emoji: '🔥', bg: '#FEF0E6', border: '#FDDCBE', text: '#C05A1F', sub: '#E8956B' },
-  'Cold / ცივი':                { emoji: '🧊', bg: '#EAF3FB', border: '#BDD9F5', text: '#185FA5', sub: '#6AAEE0' },
-  'Desserts / დესერტი':         { emoji: '🍰', bg: '#FEF0F5', border: '#F9C8DC', text: '#993556', sub: '#D4537E' },
-  'Drinks / სასმელი':           { emoji: '🥤', bg: '#EAF7FB', border: '#B8E8F5', text: '#0E7490', sub: '#38BDF8' },
-  'Vegetarian / ვეგეტარიანული': { emoji: '🌿', bg: '#EAF4EE', border: '#B8DFC3', text: '#2D6A4F', sub: '#6BAE88' },
+  'All / ყველა':                { bg: '#F7F7F5', border: '#E8E8E4', text: '#1A1A1A', sub: '#9B9B97' },
+  'Hot / ცხელი':                { bg: '#FEF0E6', border: '#FDDCBE', text: '#C05A1F', sub: '#E8956B' },
+  'Cold / ცივი':                { bg: '#EAF3FB', border: '#BDD9F5', text: '#185FA5', sub: '#6AAEE0' },
+  'Desserts / დესერტი':         { bg: '#FEF0F5', border: '#F9C8DC', text: '#993556', sub: '#D4537E' },
+  'Drinks / სასმელი':           { bg: '#EAF7FB', border: '#B8E8F5', text: '#0E7490', sub: '#38BDF8' },
+  'Vegetarian / ვეგეტარიანული': { bg: '#EAF4EE', border: '#B8DFC3', text: '#2D6A4F', sub: '#6BAE88' },
 };
 
 export default function FilterBar({ categories, active, onSelect, dishes }) {
@@ -25,8 +25,9 @@ export default function FilterBar({ categories, active, onSelect, dishes }) {
         const isActive = active === cat;
 
         return (
-          <div
+          <button
             key={cat}
+            type="button"
             onClick={() => onSelect(cat)}
             style={{
               display: 'flex',
@@ -38,26 +39,30 @@ export default function FilterBar({ categories, active, onSelect, dishes }) {
               border: `1.5px solid ${isActive ? '#1A3A2A' : config.border}`,
               background: isActive ? '#1A3A2A' : config.bg,
               cursor: 'pointer',
-              transition: 'all 0.15s',
-              WebkitTapHighlightColor: 'transparent',
-              userSelect: 'none',
+              WebkitAppearance: 'none',
+              appearance: 'none',
+              WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+              touchAction: 'manipulation',
+              outline: 'none',
             }}
           >
             <span style={{
               fontSize: '13px',
               fontWeight: 500,
               color: isActive ? '#fff' : config.text,
-              textAlign: 'center'
+              textAlign: 'center',
+              pointerEvents: 'none'
             }}>
               {cat}
             </span>
             <span style={{
               fontSize: '11px',
-              color: isActive ? '#9FE1CB' : config.sub
+              color: isActive ? '#9FE1CB' : config.sub,
+              pointerEvents: 'none'
             }}>
               {count} dishes
             </span>
-          </div>
+          </button>
         );
       })}
     </div>
