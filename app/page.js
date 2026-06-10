@@ -8,16 +8,7 @@ import MenuGrid from '../components/MenuGrid';
 export default function MenuPage() {
   const [activeFilter, setActiveFilter] = useState('All / ყველა');
   const [search, setSearch] = useState('');
-  const [dishes, setDishes] = useState([]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('dishes');
-    if (saved) {
-      setDishes(JSON.parse(saved));
-    } else {
-      setDishes(defaultDishes);
-    }
-  }, []);
+  const [dishes, setDishes] = useState(defaultDishes);
 
   const availableDishes = dishes.filter(d => d.available);
 
@@ -31,8 +22,6 @@ export default function MenuPage() {
 
   return (
     <main style={{ maxWidth: '480px', margin: '0 auto', minHeight: '100vh', background: '#F7F7F5' }}>
-
-      {/* Header */}
       <div style={{ background: '#1A3A2A', padding: '32px 20px 24px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
           <div>
@@ -59,10 +48,8 @@ export default function MenuPage() {
         </div>
       </div>
 
-      {/* Search */}
       <SearchBar value={search} onChange={setSearch} />
 
-      {/* Filters */}
       <FilterBar
         categories={categories}
         active={activeFilter}
@@ -70,14 +57,11 @@ export default function MenuPage() {
         dishes={availableDishes}
       />
 
-      {/* Section label */}
       <p style={{ fontSize: '11px', fontWeight: 500, color: '#9B9B97', textTransform: 'uppercase', letterSpacing: '0.08em', padding: '16px 16px 8px' }}>
         {activeFilter === 'All / ყველა' ? 'All dishes' : activeFilter}
       </p>
 
-      {/* Dishes */}
       <MenuGrid dishes={filtered} />
-
     </main>
   );
 }

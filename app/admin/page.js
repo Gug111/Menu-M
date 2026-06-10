@@ -11,6 +11,7 @@ export default function AdminLogin() {
   function handleLogin() {
     if (email === 'admin@restaurant.com' && password === 'admin123') {
       localStorage.setItem('adminAuth', 'true');
+      sessionStorage.setItem('adminAuth', 'true');
       router.push('/admin/dashboard');
     } else {
       setError('Wrong email or password / არასწორი მონაცემები');
@@ -19,23 +20,15 @@ export default function AdminLogin() {
 
   return (
     <main style={{
-      minHeight: '100vh',
-      background: '#F7F7F5',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '24px'
+      minHeight: '100vh', background: '#F7F7F5',
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center', padding: '24px'
     }}>
-
-      {/* Logo area */}
       <div style={{ textAlign: 'center', marginBottom: '32px' }}>
         <div style={{
-          width: '64px', height: '64px',
-          background: '#1A3A2A',
-          borderRadius: '20px',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: '28px', margin: '0 auto 16px'
+          width: '64px', height: '64px', background: '#1A3A2A',
+          borderRadius: '20px', display: 'flex', alignItems: 'center',
+          justifyContent: 'center', fontSize: '28px', margin: '0 auto 16px'
         }}>
           🍽️
         </div>
@@ -50,51 +43,29 @@ export default function AdminLogin() {
         </p>
       </div>
 
-      {/* Card */}
       <div style={{
-        background: '#fff',
-        border: '0.5px solid #EFEFED',
-        borderRadius: '20px',
-        padding: '28px 24px',
-        width: '100%',
-        maxWidth: '400px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px'
+        background: '#fff', border: '0.5px solid #EFEFED',
+        borderRadius: '20px', padding: '28px 24px',
+        width: '100%', maxWidth: '400px',
+        display: 'flex', flexDirection: 'column', gap: '12px'
       }}>
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
+          type="email" placeholder="Email" value={email}
           onChange={(e) => setEmail(e.target.value)}
           style={{
-            width: '100%',
-            padding: '12px 16px',
-            borderRadius: '12px',
-            border: '0.5px solid #E8E8E4',
-            background: '#F7F7F5',
-            fontSize: '14px',
-            color: '#1A1A1A',
-            outline: 'none',
-            fontFamily: 'inherit'
+            width: '100%', padding: '12px 16px', borderRadius: '12px',
+            border: '0.5px solid #E8E8E4', background: '#F7F7F5',
+            fontSize: '14px', color: '#1A1A1A', outline: 'none', fontFamily: 'inherit'
           }}
         />
         <input
-          type="password"
-          placeholder="Password"
-          value={password}
+          type="password" placeholder="Password" value={password}
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
           style={{
-            width: '100%',
-            padding: '12px 16px',
-            borderRadius: '12px',
-            border: '0.5px solid #E8E8E4',
-            background: '#F7F7F5',
-            fontSize: '14px',
-            color: '#1A1A1A',
-            outline: 'none',
-            fontFamily: 'inherit'
+            width: '100%', padding: '12px 16px', borderRadius: '12px',
+            border: '0.5px solid #E8E8E4', background: '#F7F7F5',
+            fontSize: '14px', color: '#1A1A1A', outline: 'none', fontFamily: 'inherit'
           }}
         />
 
@@ -104,22 +75,12 @@ export default function AdminLogin() {
           </p>
         )}
 
-        <button
-          onClick={handleLogin}
-          style={{
-            width: '100%',
-            padding: '13px',
-            borderRadius: '12px',
-            border: 'none',
-            background: '#1A3A2A',
-            color: '#fff',
-            fontSize: '15px',
-            fontWeight: 500,
-            cursor: 'pointer',
-            fontFamily: 'inherit',
-            marginTop: '4px'
-          }}
-        >
+        <button onClick={handleLogin} style={{
+          width: '100%', padding: '13px', borderRadius: '12px',
+          border: 'none', background: '#1A3A2A', color: '#fff',
+          fontSize: '15px', fontWeight: 500, cursor: 'pointer',
+          fontFamily: 'inherit', marginTop: '4px'
+        }}>
           Sign In / შესვლა
         </button>
 
